@@ -1,0 +1,80 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Auth model"""
+type AuthResponse {
+  id: String!
+  fullname: String!
+  email: String!
+  access_token: String!
+  refresh_token: String!
+}
+
+"""Tokens"""
+type RefreshTokenResponse {
+  access_token: String!
+  refresh_token: String!
+}
+
+"""Create Note model"""
+type NoteResponse {
+  id: String!
+  title: String!
+  content: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Query {
+  getNotes: [NoteResponse!]!
+  refreshToken: RefreshTokenResponse!
+  logout: Boolean!
+}
+
+type Mutation {
+  createNote(noteInput: noteInput!): NoteResponse!
+  updateNote(noteInput: noteInput!): NoteResponse!
+  deleteNote(noteInput: noteInput!): NoteResponse!
+  signup(signupInput: signupInput!): AuthResponse!
+  login(loginInput: loginInput!): AuthResponse!
+}
+
+"""Note request object type."""
+input noteInput {
+  """Note Id"""
+  id: String
+
+  """Note Title"""
+  title: String
+
+  """Note Content"""
+  content: String
+}
+
+"""Signup user input object type."""
+input signupInput {
+  """User Name"""
+  fullname: String!
+
+  """User Email"""
+  email: String!
+
+  """User Password"""
+  password: String!
+}
+
+"""Login user input object type."""
+input loginInput {
+  """User Email"""
+  email: String!
+
+  """User Password"""
+  password: String!
+}
+
+type Subscription {
+  noteCreated: NoteResponse!
+  noteUpdated: NoteResponse!
+  noteDeleted: NoteResponse!
+}
